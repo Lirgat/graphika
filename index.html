@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ECharts Example</title>
+<script src="./node_modules/echarts/dist/echarts.min.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+#main {
+width: 100%;
+min-height: 966px;
+overflow-x: hidden;
+background-color: #292829;
+}
+.block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 210px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    color: white;
+    font-size: 34px;
+    z-index: 999999999999;
+    top: 220px;
+    font-family: sans-serif;
+}
+</style>
+</head>
+<body>
+<div id="main">
+</div>
+<div class="block">
+    <div class="all">1 123 500 ₽ </div>
+    <div class="meat">145 200 ₽ </div>
+    <div class="zp">1 223 500 ₽ </div>
+    <div class="other">23 500 ₽ </div>
+</div>
+<script>
+var chartdom = document.getElementById('main');
+var mychart = echarts.init(chartdom, 'dark');
+var option;
+
+option = {
+title: {
+text: 'ОБЩАЯ ВЫРУЧКА',
+padding: [50, 20, 20, 20],
+textStyle: {
+fontSize: 38
+}
+},
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(0, 0, 0, 0.8)',
+textStyle: {
+color: '#ffffff'
+}
+},
+legend: {
+data: ['ОБЩЕЕ ОПЛАЧЕНО', 'ДЕНЬГИ ЗА МЯСО', 'РАСХОДЫ НА ЗП', 'ПРОЧЕЕ'],
+icon: 'circle',
+itemWidth: 20,
+itemHeight: 10,
+itemGap: 100,
+textStyle: {
+fontWeight: 'bolder',
+fontSize: 26,
+padding: [5, 0, 1, 5]
+},
+show: true,
+orient: 'horizontal',
+align: 'left',
+top: '150'
+},
+grid: {
+top: '30%',
+left: '2%',
+right: '0%'
+},
+xAxis: {
+data: [
+'Янв',
+'Фев',
+'Март',
+'Апр',
+'Май',
+'Июнь',
+'Июль',
+'Авг',
+'Сен',
+'Окт',
+'Ноя',
+'Дек'
+]
+},
+yAxis: {},
+series: [
+{
+name: 'ДЕНЬГИ ЗА МЯСО',
+data: [50, 150, 40, 30, 60, 120, 180, 110, 90, 50, 60, 70],
+type: 'bar',
+stack: 'x',
+color: '#9747ff'
+},
+{
+name: 'РАСХОДЫ НА ЗП',
+data: [70, 180, 40, 20, 30, 50, 180, 30, 20, 50, 30, 50],
+type: 'bar',
+stack: 'x',
+color: '#0077f7'
+},
+{
+name: 'ПРОЧЕЕ',
+data: [80, 20, 20, 35, 50, 40, 110, 30, 20, 50, 50, 40],
+type: 'bar',
+stack: 'x',
+color: '#13d6ff'
+},
+{
+name: 'ОБЩЕЕ ОПЛАЧЕНО',
+type: 'line',
+showSymbol: false,
+data: [
+100, 130, 90, 150, 120, 140, 110, 120, 90, 120, 110, 100, 130, 101
+],
+color: '#c6ec92',
+smooth: true,
+icon: 'none'
+}
+]
+};
+
+option && mychart.setOption(option);
+</script>
+</body>
+</html>
